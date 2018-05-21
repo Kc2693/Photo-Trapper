@@ -35,7 +35,7 @@ describe("/api/v1 Requests", () => {
         });
     });
 
-    it("should return an array and status code 200", (done) => {
+    it("GET: should return an array and status code 200", (done) => {
       chai.request(app).get('/api/v1/photos').end((err, response) => {
         response.should.be.json;
         response.body.should.be.a('array');
@@ -51,7 +51,7 @@ describe("/api/v1 Requests", () => {
       });
     });
 
-    it.skip("should post a new photo to the database", (done) => {
+    it("POST: should post a new photo to the database", (done) => {
       chai.request(app)
       .post('/api/v1/photos')
       .send({
@@ -59,6 +59,7 @@ describe("/api/v1 Requests", () => {
         url: 'https://i.redditmedia.com/ZYQNEpadX2eL2W0BJIaAU_hEJdfPuiOeZUpNCbyZrbo.jpg?w=1024&s=5e0da47940313a99b50ebef91a1bef01'
       })
       .end((err, response) => {
+        console.log(response);
         response.should.have.status(201);
         response.should.be.json;
         response.body.should.be.an('object');
