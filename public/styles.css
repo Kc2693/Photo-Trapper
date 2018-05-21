@@ -38,6 +38,7 @@
 }
 
 .photo-card {
+  background-color: #1a1b23;
   position: relative;
   border: 1px solid #097e95;
   padding-top: 10px;
@@ -52,6 +53,7 @@
 }
 
 .photo-card h6 {
+  background-color: #1a1b23;
   display: inline;
   font-size: 20px;
   margin: 5px;
