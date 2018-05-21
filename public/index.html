@@ -3,28 +3,33 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <title>Photo Trapper Keeper</title>
+    <title>Toe-bean Collector</title>
   </head>
   <body>
-    <h1>Hello I am working</h1>
-    <form>
-      <input
-        type="text"
-        placeholder="title"
-        required />
-      <input
-        type="url"
-        placeholder="Photo Source (url)"
-        required />
-      <button type="submit">Add to album!</button>
-    </form>
-
+    <header class="title-and-form">
+      <h1>Welcome to Toe-bean Collector</h1>
+      <form>
+        <input
+          type="text"
+          placeholder="Photo Title"
+          maxlength="25"
+          class="photo-title-input form-elm"
+          required />
+        <input
+          type="url"
+          placeholder="Photo Source (url)"
+          class="photo-url-input form-elm"
+          required />
+        <button
+          type="submit"
+          class="add-photo-btn form-elm">
+          Add to album!
+        </button>
+      </form>
+    </header>
     <section class="photo-card-container">
-
-
-
-
     </section>
     <script src="scripts.js" type="text/javascript"></script>
   </body>
