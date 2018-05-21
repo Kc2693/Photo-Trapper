@@ -58,9 +58,13 @@
 }
 
 #delete-btn {
+  background-image: url('delete-button.svg');
+  background-size: 19px 19px;
   position: absolute;
   right: 5px;
   bottom: 5px;
   height: 20px;
+  outline: none;
+  border: none;
   width: 20px;
 }

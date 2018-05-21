@@ -12,9 +12,6 @@ $('.add-photo-btn').click(async function(event) {
   displayAllPictures(photos);
 })
 
-$('.delete-btns')
-
-
 async function getAllPictures() {
   try {
     const response = await fetch('/api/v1/photos');
@@ -32,7 +29,7 @@ async function postNewPhoto() {
   const body = {title, url}
 
   try {
-    const response = fetch('api/v1/photos',{
+    const response = fetch('/api/v1/photos',{
       method:'POST',
       headers:{
         'Accept':'application/json',
@@ -54,7 +51,7 @@ function displayAllPictures(photos) {
       let photoCard = `<article class="photo-card" id=${photo.id}>
           <img id="photo" src=${photo.url}/>
           <h6>${photo.title}</h6>
-          <button id="delete-btn" onClick="deletePhoto(event)">t</button>
+          <button id="delete-btn" onClick="deletePhoto(event)"></button>
         </article>`
 
       $('.photo-card-container').append(photoCard);
@@ -70,21 +67,21 @@ async function deletePhoto(event) {
   let parentNode = $(event.target).parent();
   let parentId = parentNode.attr('id')
 
-  await deletePhotoFromDb(parentId);
-  displayAllPictures();
+  const delPhoto = await deletePhotoFromDb(parentId);
+  if (delPhoto.status === 204) {
+    parentNode.remove();
+  } else {
+    alert('Problem deleting photo')
+  }
 }
 
 async function deletePhotoFromDb(id) {
-  try {
-    const response = await fetch('api/v1/photos', {
-      method: 'DELETE',
-      headers: {
-        'Accept':'application/json',
-        'Content-Type':'application/json',
-      },
-      body: JSON.stringify(id)
-    })
+  const url = `api/v1/photos/${id}`;
 
+  try {
+    const response = await fetch(url, {
+      method: 'DELETE'
+    })
     return response;
   } catch (err) {
     throw err;

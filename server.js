@@ -18,6 +18,17 @@ app.get('/api/v1/photos', (request, response) => {
     .catch(error => response.status(500).json(error));
 });
 
+app.get('/api/v1/photos/:id', (req, res) => {
+  const { id } = req.params;
+  database('photos').select().where('id', id)
+    .then((photo) => {
+      res.status(200).json(photo);
+    })
+    .catch((error) => {
+      res.status(500).json({error: 'Error retrieving photo'});
+    });
+});
+
 app.post('/api/v1/photos', (request, response) => {
   const photo = request.body;
 
@@ -34,8 +45,8 @@ app.post('/api/v1/photos', (request, response) => {
   .catch(error => response.status(500).json({ error }));
 });
 
-app.delete('/api/v1/photos', (request, response) => {
-  const id = request.body.id;
+app.delete('/api/v1/photos/:id', (request, response) => {
+  const { id } = request.params;
 
   if (!id) {
     return response
@@ -44,8 +55,8 @@ app.delete('/api/v1/photos', (request, response) => {
   }
 
   database('photos').where('id', id).del()
-    .then(id => response.status(200).json({ message: `Deleted photo with id ${request.body.id}`}))
-    .catch(error => response.status(500).json({ error }));
+    .then(id => response.status(204).json({ message: `Deleted photo with id ${request.body.id}` }))
+    .catch(error => response.status(404).json({error: 'Photo not found'}));
 })
 
 app.listen(app.get('port'), () => {
