@@ -10,6 +10,8 @@ $('.add-photo-btn').click(async function(event) {
 
   const photos = await getAllPictures();
   displayAllPictures(photos);
+
+  $('.form-elm').val('')
 })
 
 async function getAllPictures() {
