@@ -1,0 +1,66 @@
+* {
+  background-color: #303240;
+  color: #B6E9F7;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+}
+
+.title-and-form {
+  margin: auto;
+  width: 470px;
+}
+
+.title-and-form form {
+  margin: auto;
+  width: 340px;
+}
+
+.form-elm {
+  outline: none;
+  border: 1px solid #097e95;
+}
+
+.title-and-form input::placeholder {
+  color: #B6E9F7;
+}
+
+.photo-card-container {
+    display: grid;
+    grid-template-columns: 300px 300px 300px;
+    grid-template-rows: 420px 420px;
+    grid-column-gap: 10px;
+    grid-row-gap: 15px;
+    justify-items: stretch;
+    align-items: stretch;
+    padding: 20px 10px;
+    margin: auto;
+    width: 72%;
+}
+
+.photo-card {
+  position: relative;
+  border: 1px solid #097e95;
+  padding-top: 10px;
+  text-align: center;
+}
+
+#photo {
+  display: block;
+  margin: 0 auto 15px auto;
+  width: 250px;
+  height: 350px;
+}
+
+.photo-card h6 {
+  display: inline;
+  font-size: 20px;
+  margin: 5px;
+}
+
+#delete-btn {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  height: 20px;
+  width: 20px;
+}
