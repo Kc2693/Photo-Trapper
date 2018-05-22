@@ -50,8 +50,9 @@ function displayAllPictures(photos) {
 
   if (Array.isArray(photos)) {
     photos.map((photo) => {
+
       let photoCard = `<article class="photo-card" id=${photo.id}>
-          <img id="photo" src=${photo.url}/>
+          <img id="photo" src=${photo.url} />
           <h6>${photo.title}</h6>
           <button id="delete-btn" onClick="deletePhoto(event)"></button>
         </article>`
