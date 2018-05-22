@@ -96,7 +96,7 @@ describe("/api/v1 Requests", () => {
       });
     });
 
-    it("DELETE: should not delete anything the ID is wrong", (done) => {
+    it("DELETE: should not delete anything if the ID is wrong", (done) => {
       chai.request(app)
       .del('/api/v1/photos/bob')
       .end((err, response) => {
