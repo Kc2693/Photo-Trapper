@@ -20,9 +20,9 @@
   border: 1px solid #097e95;
 }
 
-.title-and-form input::placeholder {
+.title-and-form input, .title-and-form input::placeholder {
   color: #B6E9F7;
-  padding-left: 5px;
+  padding-left: 3px;
 }
 
 .photo-card-container {
