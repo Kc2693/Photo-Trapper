@@ -48,15 +48,9 @@ app.post('/api/v1/photos', (request, response) => {
 app.delete('/api/v1/photos/:id', (request, response) => {
   const { id } = request.params;
 
-  if (!id) {
-    return response
-      .status(422)
-      .send({ error: `You're missing an id property.` });
-  }
-
   database('photos').where('id', id).del()
-    .then(id => response.status(204).json({ message: `Deleted photo with id ${request.body.id}` }))
-    .catch(error => response.status(404).json({error: 'Photo not found'}));
+    .then(id => response.status(200).json({ message: `Deleted photo with id ${request.params.id}` }))
+    .catch(error => response.status(422).send('ID is not an integer'));
 })
 
 app.listen(app.get('port'), () => {

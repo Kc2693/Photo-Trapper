@@ -59,17 +59,16 @@ describe("/api/v1 Requests", () => {
         url: 'https://i.redditmedia.com/ZYQNEpadX2eL2W0BJIaAU_hEJdfPuiOeZUpNCbyZrbo.jpg?w=1024&s=5e0da47940313a99b50ebef91a1bef01'
       })
       .end((err, response) => {
-        console.log(response);
         response.should.have.status(201);
         response.should.be.json;
         response.body.should.be.an('object');
         response.body.should.have.property('id');
-        // response.body.id.should.equal(4);
+        response.body.id.should.equal(4);
         done();
       });
     });
 
-    it.skip("should not post to database if a param is missing", (done) => {
+    it("POST: should not post to database if a param is missing", (done) => {
       chai.request(app)
       .post('/api/v1/photos')
       .send({
@@ -84,15 +83,26 @@ describe("/api/v1 Requests", () => {
       });
     });
 
-    it.skip("should delete a photo by id", () => {
-      chai.request(server)
-      .delete('/api/v1/photos/4')
+    it("DELETE: should delete a photo by id", (done) => {
+      chai.request(app)
+      .del('/api/v1/photos/3')
       .end((err, response) => {
         response.should.have.status(200);
         response.should.be.json;
         response.body.should.be.an('object');
         response.body.should.have.property('message');
-        response.body.message.should.equal('Deleted photo with id 4');
+        response.body.message.should.equal('Deleted photo with id 3');
+        done();
+      });
+    });
+
+    it("DELETE: should not delete anything the ID is wrong", (done) => {
+      chai.request(app)
+      .del('/api/v1/photos/bob')
+      .end((err, response) => {
+        response.should.have.status(422);
+        response.should.be.an('object');
+        response.text.should.equal('ID is not an integer')
         done();
       });
     });
