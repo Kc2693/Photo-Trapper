@@ -106,5 +106,17 @@ describe("/api/v1 Requests", () => {
         done();
       });
     });
+
+    it("DELETE: should not delete anything if ID doesn't exist", (done) => {
+      chai.request(app)
+      .del('/api/v1/photos/55')
+      .end((err, response) => {
+        response.should.have.status(404);
+        response.should.be.json;
+        response.should.be.an('object');
+        response.body.should.equal('No decks found with id 55.');
+        done();
+      });
+    });
   });
 });

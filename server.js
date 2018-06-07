@@ -49,7 +49,10 @@ app.delete('/api/v1/photos/:id', (request, response) => {
   const { id } = request.params;
 
   database('photos').where('id', id).del()
-    .then(id => response.status(200).json({ message: `Deleted photo with id ${request.params.id}` }))
+    .then(deleteCount => {
+      deleteCount === 0 ? response.status(404).json(`No decks found with id ${id}.`)
+      : response.status(200).json({ message: `Deleted photo with id ${request.params.id}`})
+    })
     .catch(error => response.status(422).send('ID is not an integer'));
 })
 
